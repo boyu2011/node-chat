@@ -1,0 +1,8 @@
+Node-chat is a multi-user chat app using NodeJS and SocketIO.
+
+Launch server : node server.js
+Visit server in a browser : http://localhost:8000
+
+Feel free to contact me with any questions.
+
+BoYu (boyu2011@gmail.com)
