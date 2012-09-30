@@ -1,0 +1,84 @@
+<!--
+	client.html
+	
+    BoYu (boyu2011@gmail.com)
+-->
+
+<!DOCTYPE html> 
+<html> 
+	<head>
+		<title>Ruby Tour</title>
+		<LINK href="style.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- CodeMirror -->
+        <script src="codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+        <script src="codemirror/mode/ruby/ruby.js"></script>
+        <script>
+            var editor;
+            function load()
+            {
+                editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+                    mode: "text/x-ruby",
+                    tabMode: "indent",
+                    matchBrackets: true,
+                    indentUnit: 4,
+                    lineNumbers: true,
+                });
+            }
+        </script>
+    </head>
+    <body onload="load()">
+        <script src="/socket.io/socket.io.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <script>
+			var socket = io.connect('http://127.0.0.1:8000');
+
+            socket.on('connect', function() {
+			
+            });
+
+			socket.on('code_output',function(username, data) { 
+                document.getElementById('output').value = data;
+			});
+			
+			$(document).ready(function(){
+                $("#run_code_btn").click(function() {
+                    var text = editor.getValue();
+                    socket.emit('execute_code', text);
+                });
+			});
+            
+		</script>
+        <div class="container">
+            <h1>Ruby Tour</h1>
+            <div class="row">
+                <div class="span6">
+                    <h4>Code Editor</h4>
+
+                    <textarea id="editor" rows="10"
+                        style="width:100%;padding:0;margin:0;background:white;border:1">
+                    </textarea><br />
+                    
+                    <button class="btn btn-large btn-primary" id="run_code_btn">
+                        Run
+                    </button><br /><br />
+                    
+                    <textarea id="output" rows="10"
+                        style="width:100%;padding:0;margin:0;background:GAINSBORO;border:1">
+                    </textarea><br />
+                </div>
+                <div class="span6">
+                    <h4>Ruby Quick Tutorial</h4>
+                    
+                    <textarea id="tutorial" rows="29" 
+                        style="width:100%;padding:0;margin:0;background:white;border:1">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
+
+

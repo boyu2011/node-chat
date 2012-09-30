@@ -1,0 +1,28 @@
+body
+{
+	background-color:#d0e4fe;
+    #leftcolumn { width: 300px; border: 1px solid red; float: left}
+    #rightcolumn { width: 300px; border: 1px solid red; float: right}   
+}
+#main { }
+#left { float:left }
+#right { float:right }
+
+#output
+{
+	display: block;
+    padding-bottom: 2.1em; 
+    background: inherit;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+#send {
+  position: fixed;
+  color: #fff;
+  width: 100%; 
+  bottom: 0;
+  background: #733;
+}
+
+                 
